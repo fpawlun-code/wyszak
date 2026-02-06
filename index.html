@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browar Wyszak - Restauracja z browarem rzemieślniczym w XV-wiecznej piwniczce Ratusza w Szczecinie. Wyjątkowe piwa, doskonała kuchnia, niezapomniana atmosfera.">
+    <meta name="keywords" content="browar wyszak, piwo rzemieślnicze, szczecin, restauracja, browar, piwniczka, ratusz">
+    <meta name="author" content="Browar Wyszak">
+    <meta property="og:title" content="Browar Wyszak - Restauracja & Browar Rzemieślniczy">
+    <meta property="og:description" content="Wyjątkowe miejsce w XV-wiecznej piwniczce Ratusza w Szczecinie">
+    <meta property="og:image" content="assets/img/logo.png">
+    <meta property="og:type" content="website">
+    <title>Browar Wyszak | Restauracja & Browar Rzemieślniczy w Szczecinie</title>
+    <link rel="icon" type="image/png" href="assets/img/hop.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader" class="loader" aria-hidden="true">
+        <img src="assets/img/loader.gif" alt="Ładowanie...">
+    </div>
+
+    <!-- Navigation -->
+    <header id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/img/logo.png" alt="Browar Wyszak Logo" width="140" height="auto">
+            </a>
+            <nav class="nav-menu" id="navMenu" role="navigation" aria-label="Menu główne">
+                <ul class="nav-list">
+                    <li><a href="#about" class="nav-link">O Nas</a></li>
+                    <li><a href="#gallery" class="nav-link">Galeria</a></li>
+                    <li><a href="#offer" class="nav-link">Oferta</a></li>
+                    <li><a href="#team" class="nav-link">Zespół</a></li>
+                    <li><a href="#reservations" class="nav-link">Rezerwacje</a></li>
+                    <li><a href="#achievements" class="nav-link">Osiągnięcia</a></li>
+                    <li><a href="#contact" class="nav-link">Kontakt</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <button id="darkModeToggle" class="dark-mode-btn" aria-label="Przełącz tryb ciemny" title="Tryb ciemny">
+                    <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="nav-toggle" id="navToggle" aria-label="Otwórz menu" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content fade-in">
+            <img src="assets/img/logo.png" alt="Browar Wyszak" class="hero-logo" width="280" height="auto">
+            <h1 class="hero-title">Wyjątkowe miejsce<br>w XV-wiecznej piwniczce</h1>
+            <p class="hero-subtitle">Restauracja z browarem rzemieślniczym w sercu Szczecina</p>
+            <div class="hero-cta">
+                <a href="#reservations" class="btn btn-primary">Rezerwuj stolik</a>
+                <a href="#contact" class="btn btn-outline">Kontakt</a>
+                <a href="https://maps.google.com/?q=ul.+Mściwoja+II+8,+70-535+Szczecin" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:6px;vertical-align:middle">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    Nawiguj
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll-hint" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">Nasza Historia</span>
+                <h2 class="section-title">O Browarze Wyszak</h2>
+                <div class="section-divider">
+                    <img src="assets/img/hop.png" alt="" class="divider-icon" width="32" height="32">
+                </div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text fade-in">
+                    <p class="about-lead">
+                        <strong>Browar Rodzinny Wyszak</strong> to wyjątkowe miejsce na kulinarnej mapie Szczecina.
+                        Mieścimy się w zabytkowych, XV-wiecznych piwnicach Ratusza Staromiejskiego
+                        — jednego z najważniejszych zabytków miasta.
+                    </p>
+                    <p>
+                        Nasza historia sięga tradycji warzenia piwa, które w Szczecinie ma korzenie
+                        datowane na okres średniowiecza. W murach, które pamiętają wieki, tworzymy
+                        piwa rzemieślnicze według autorskich receptur, łącząc dawne techniki
+                        z nowoczesnym podejściem do piwowarstwa.
+                    </p>
+                    <p>
+                        Restauracja serwuje dania kuchni polskiej i europejskiej, doskonale dobrane
+                        do naszych piw. Każde piwo warzone jest na miejscu, w widocznej zza szkła warzelni,
+                        co czyni wizytę u nas prawdziwym doświadczeniem.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            <span>XV-wieczne piwnice Ratusza</span>
+                        </div>
+                        <div class="about-feature">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                            <span>Piwo warzone na miejscu</span>
+                        </div>
+                        <div class="about-feature">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            <span>Imprezy i wydarzenia</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-images fade-in">
+                    <div class="about-img-main">
+                        <img src="assets/img/about-bg.jpg" alt="Wnętrze Browaru Wyszak" loading="lazy" width="600" height="400">
+                    </div>
+                    <div class="about-img-secondary">
+                        <img src="assets/img/building.webp" alt="Budynek Browaru Wyszak" loading="lazy" width="280" height="200">
+                        <img src="assets/img/tanks.webp" alt="Tanki browarnicze" loading="lazy" width="280" height="200">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">Wnętrza</span>
+                <h2 class="section-title">Galeria</h2>
+                <div class="section-divider">
+                    <img src="assets/img/hop.png" alt="" class="divider-icon" width="32" height="32">
+                </div>
+                <p class="section-desc">Odkryj atmosferę XV-wiecznych piwnic Ratusza Staromiejskiego</p>
+            </div>
+        </div>
+        <div class="gallery-carousel fade-in">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide">
+                    <img src="assets/img/gallery/gallery-1.jpg" alt="Wnętrze browaru - sala główna" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                    <img src="assets/img/gallery/gallery-2.jpg" alt="Wnętrze browaru - piwniczka" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                    <img src="assets/img/gallery/gallery-3.jpg" alt="Wnętrze browaru - bar" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                    <img src="assets/img/gallery/gallery-4.jpg" alt="Wnętrze browaru - warzelnia" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                    <img src="assets/img/gallery/gallery-5.jpg" alt="Wnętrze browaru - detale" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                    <img src="assets/img/gallery/gallery-6.jpg" alt="Wnętrze browaru - ceglane ściany" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                    <img src="assets/img/gallery/gallery-7.jpg" alt="Wnętrze browaru - sklepienie" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                    <img src="assets/img/gallery/gallery-8.jpg" alt="Wnętrze browaru - sala bankietowa" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                    <img src="assets/img/gallery/gallery-9.jpg" alt="Najlepsze piwo rzemieślnicze w Polsce" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                    <img src="assets/img/gallery/gallery-10.jpg" alt="Wnętrze browaru" loading="lazy">
+                </div>
+            </div>
+            <button class="carousel-btn carousel-btn-prev" id="carouselPrev" aria-label="Poprzednie zdjęcie">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="carousel-btn carousel-btn-next" id="carouselNext" aria-label="Następne zdjęcie">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+
+        <!-- Fullscreen Lightbox -->
+        <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Powiększone zdjęcie">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Zamknij">&times;</button>
+            <button class="lightbox-prev" id="lightboxPrev" aria-label="Poprzednie">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <img class="lightbox-img" id="lightboxImg" src="" alt="Powiększone zdjęcie galerii">
+            <button class="lightbox-next" id="lightboxNext" aria-label="Następne">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Menu & Offer Section -->
+    <section id="offer" class="section offer">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">Nasza Oferta</span>
+                <h2 class="section-title">Menu & Oferta</h2>
+                <div class="section-divider">
+                    <img src="assets/img/hop.png" alt="" class="divider-icon" width="32" height="32">
+                </div>
+            </div>
+            <div class="offer-grid fade-in">
+                <!-- Menu Card -->
+                <div class="offer-card">
+                    <div class="offer-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 2l2 18c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H3z"/>
+                            <path d="M12 2v8l-2-2-2 2V2"/>
+                        </svg>
+                    </div>
+                    <h3 class="offer-card-title">Menu</h3>
+                    <p class="offer-card-desc">
+                        Autorska kuchnia polska i europejska. Dania przygotowywane z lokalnych,
+                        sezonowych składników — idealnie dobrane do naszych piw rzemieślniczych.
+                    </p>
+                    <div class="offer-card-img">
+                        <img src="assets/img/gallery/menu-highlight.jpg" alt="Menu Browaru Wyszak" loading="lazy">
+                    </div>
+                    <a href="#reservations" class="btn btn-small">Sprawdź menu</a>
+                </div>
+
+                <!-- Beer Card -->
+                <div class="offer-card offer-card-featured">
+                    <div class="offer-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
+                            <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/>
+                            <line x1="6" y1="2" x2="6" y2="4"/>
+                            <line x1="10" y1="2" x2="10" y2="4"/>
+                            <line x1="14" y1="2" x2="14" y2="4"/>
+                        </svg>
+                    </div>
+                    <h3 class="offer-card-title">Piwa Rzemieślnicze</h3>
+                    <p class="offer-card-desc">
+                        Warzone na miejscu, w widocznej zza szkła warzelni. Od klasycznych lagerów
+                        po odważne piwa sezonowe — każdy kufel to unikalne doświadczenie.
+                    </p>
+                    <div class="beer-showcase">
+                        <img src="assets/img/beer/apa.png" alt="APA" loading="lazy" class="beer-bottle">
+                        <img src="assets/img/beer/ipa.png" alt="IPA" loading="lazy" class="beer-bottle">
+                        <img src="assets/img/beer/ciemny-lager.png" alt="Ciemny Lager" loading="lazy" class="beer-bottle">
+                        <img src="assets/img/beer/pszenica.png" alt="Pszenica" loading="lazy" class="beer-bottle">
+                    </div>
+                    <a href="#achievements" class="btn btn-primary btn-small">Nasze piwa</a>
+                </div>
+
+                <!-- Events Card -->
+                <div class="offer-card">
+                    <div class="offer-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3 class="offer-card-title">Imprezy Firmowe</h3>
+                    <p class="offer-card-desc">
+                        Organizujemy bankiety, imprezy firmowe i wydarzenia okolicznościowe.
+                        XV-wieczne wnętrza zapewnią niezapomnianą atmosferę każdej uroczystości.
+                    </p>
+                    <div class="offer-card-img">
+                        <img src="assets/img/gallery/events.jpg" alt="Imprezy i wydarzenia" loading="lazy">
+                    </div>
+                    <a href="#contact" class="btn btn-small">Zapytaj o ofertę</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section team">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">Poznaj Nas</span>
+                <h2 class="section-title">Nasz Zespół</h2>
+                <div class="section-divider">
+                    <img src="assets/img/hop.png" alt="" class="divider-icon" width="32" height="32">
+                </div>
+                <p class="section-desc">Ludzie, którzy tworzą wyjątkowy charakter Browaru Wyszak</p>
+            </div>
+            <div class="team-grid fade-in">
+                <div class="team-card">
+                    <div class="team-card-img">
+                        <img src="assets/img/team/michal-jagla.jpg" alt="Michał Jagła" loading="lazy" width="280" height="355">
+                    </div>
+                    <div class="team-card-info">
+                        <h3 class="team-card-name">Michał Jagła</h3>
+                        <span class="team-card-role">Właściciel</span>
+                        <p class="team-card-desc">Wizjoner i założyciel Browaru Wyszak. Jego pasja do piwowarstwa i miłość do historii Szczecina zaowocowały stworzeniem wyjątkowego miejsca w piwnicach Ratusza.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-card-img">
+                        <img src="assets/img/team/joanna-rozycka.jpg" alt="Joanna Różycka" loading="lazy" width="280" height="355">
+                    </div>
+                    <div class="team-card-info">
+                        <h3 class="team-card-name">Joanna Różycka</h3>
+                        <span class="team-card-role">Właścicielka</span>
+                        <p class="team-card-desc">Współzałożycielka browaru, dba o każdy detal gościnności. Dzięki jej wyczuciu i zaangażowaniu każda wizyta w Wyszaku jest niezapomnianym doświadczeniem.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-card-img">
+                        <img src="assets/img/team/tomasz-de-weyher.jpg" alt="Tomasz de Weyher" loading="lazy" width="280" height="355">
+                    </div>
+                    <div class="team-card-info">
+                        <h3 class="team-card-name">Tomasz de Weyher</h3>
+                        <span class="team-card-role">Mistrz Piwowar</span>
+                        <p class="team-card-desc">Twórca naszych nagradzanych receptur. Łączy wieloletnie doświadczenie z nieustanną chęcią eksperymentowania, tworząc piwa, które zdobywają serca koneserów.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-card-img">
+                        <img src="assets/img/team/sebastian-zglobis.jpg" alt="Sebastian Zgłobiś" loading="lazy" width="280" height="355">
+                    </div>
+                    <div class="team-card-info">
+                        <h3 class="team-card-name">Sebastian Zgłobiś</h3>
+                        <span class="team-card-role">Szef Kuchni</span>
+                        <p class="team-card-desc">Mistrz kulinarny, którego dania są idealnym dopełnieniem naszych piw. Stawia na lokalne, sezonowe składniki i autorskie kompozycje smaków.</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-card-img">
+                        <img src="assets/img/team/artur-halko.jpg" alt="Artur Halko" loading="lazy" width="280" height="355">
+                    </div>
+                    <div class="team-card-info">
+                        <h3 class="team-card-name">Artur Halko</h3>
+                        <span class="team-card-role">Zastępca Szefa Kuchni</span>
+                        <p class="team-card-desc">Prawa ręka Szefa Kuchni, odpowiedzialny za perfekcyjne wykonanie każdego dania. Jego precyzja i kreatywność gwarantują najwyższą jakość na talerzu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservations Section -->
+    <section id="reservations" class="section reservations">
+        <div class="reservations-overlay"></div>
+        <div class="container">
+            <div class="reservations-content fade-in">
+                <span class="section-tag section-tag-light">Zaplanuj Wizytę</span>
+                <h2 class="section-title section-title-light">Zarezerwuj Swój Stolik</h2>
+                <div class="section-divider">
+                    <img src="assets/img/hop.png" alt="" class="divider-icon" width="32" height="32">
+                </div>
+                <p class="reservations-text">
+                    Zapraszamy do rezerwacji stolika telefonicznie lub mailowo.
+                    Chętnie pomożemy w organizacji bankietów, imprez firmowych
+                    i uroczystości rodzinnych w naszych zabytkowych wnętrzach.
+                </p>
+                <div class="reservations-actions">
+                    <a href="tel:+48914883481" class="btn btn-primary btn-large">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:8px;vertical-align:middle">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                        (91) 488 34 81
+                    </a>
+                    <a href="mailto:info@browarwyszak.pl" class="btn btn-outline btn-large btn-light">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:8px;vertical-align:middle">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        info@browarwyszak.pl
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="section achievements">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">Wyróżnienia</span>
+                <h2 class="section-title">Nasze Osiągnięcia</h2>
+                <div class="section-divider">
+                    <img src="assets/img/hop.png" alt="" class="divider-icon" width="32" height="32">
+                </div>
+            </div>
+            <div class="achievements-grid fade-in">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <img src="assets/img/trip-advisor.png" alt="TripAdvisor" loading="lazy" width="120">
+                    </div>
+                    <h3 class="achievement-title">TripAdvisor</h3>
+                    <div class="achievement-rating">
+                        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    </div>
+                    <p class="achievement-desc">Doskonałe opinie od gości z całego świata. Jedno z najwyżej ocenianych miejsc gastronomicznych w Szczecinie.</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <img src="assets/img/heritage.png" alt="Europejska Sieć Regionalnego Dziedzictwa Kulinarnego" loading="lazy" width="90">
+                    </div>
+                    <h3 class="achievement-title">Dziedzictwo Kulinarne Pomorza</h3>
+                    <p class="achievement-desc">Członek Europejskiej Sieci Regionalnego Dziedzictwa Kulinarnego — wyróżnienie za promowanie tradycji kulinarnych regionu.</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <img src="assets/img/medals.png" alt="Medale i nagrody" loading="lazy" width="200">
+                    </div>
+                    <h3 class="achievement-title">Nagrody & Medale</h3>
+                    <p class="achievement-desc">Wielokrotnie nagradzane piwa rzemieślnicze na konkursach piwowarskich w Polsce i za granicą.</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <img src="assets/img/awards.png" alt="Nagrody" loading="lazy" width="200">
+                    </div>
+                    <h3 class="achievement-title">Najlepsze Piwo Rzemieślnicze</h3>
+                    <p class="achievement-desc">Uznanie w branży piwowarskiej za najwyższą jakość i innowacyjne podejście do warzenia piwa.</p>
+                </div>
+            </div>
+
+            <!-- Beer Showcase -->
+            <div class="beer-gallery fade-in">
+                <h3 class="beer-gallery-title">Nasze Piwa</h3>
+                <div class="beer-grid">
+                    <div class="beer-item">
+                        <img src="assets/img/beer/apa.png" alt="APA" loading="lazy">
+                        <span>APA</span>
+                    </div>
+                    <div class="beer-item">
+                        <img src="assets/img/beer/ipa.png" alt="IPA" loading="lazy">
+                        <span>IPA</span>
+                    </div>
+                    <div class="beer-item">
+                        <img src="assets/img/beer/ciemny-lager.png" alt="Ciemny Lager" loading="lazy">
+                        <span>Ciemny Lager</span>
+                    </div>
+                    <div class="beer-item">
+                        <img src="assets/img/beer/pszenica.png" alt="Pszeniczne" loading="lazy">
+                        <span>Pszeniczne</span>
+                    </div>
+                    <div class="beer-item">
+                        <img src="assets/img/beer/siler.png" alt="Siler" loading="lazy">
+                        <span>Siler</span>
+                    </div>
+                    <div class="beer-item">
+                        <img src="assets/img/beer/ibeerian.png" alt="IBEERian" loading="lazy">
+                        <span>IBEERian</span>
+                    </div>
+                    <div class="beer-item">
+                        <img src="assets/img/beer/oktoberfest.png" alt="Oktoberfest" loading="lazy">
+                        <span>Oktoberfest</span>
+                    </div>
+                    <div class="beer-item">
+                        <img src="assets/img/beer/pumpkin-ale.png" alt="Pumpkin Ale" loading="lazy">
+                        <span>Pumpkin Ale</span>
+                    </div>
+                    <div class="beer-item">
+                        <img src="assets/img/beer/rauchbock.png" alt="Rauchbock" loading="lazy">
+                        <span>Rauchbock</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-bg"></div>
+        <div class="container">
+            <div class="footer-top fade-in">
+                <div class="footer-brand">
+                    <img src="assets/img/logo-footer.png" alt="Browar Wyszak" class="footer-logo" width="180" loading="lazy">
+                    <p class="footer-tagline">Restauracja z browarem rzemieślniczym<br>w XV-wiecznej piwniczce Ratusza</p>
+                </div>
+
+                <div class="footer-info">
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Godziny Otwarcia</h4>
+                        <ul class="footer-hours">
+                            <li>
+                                <span class="day">Poniedziałek — Czwartek</span>
+                                <span class="time">15:00 — 23:00</span>
+                            </li>
+                            <li>
+                                <span class="day">Piątek — Sobota</span>
+                                <span class="time">13:00 — 01:00</span>
+                            </li>
+                            <li>
+                                <span class="day">Niedziela</span>
+                                <span class="time">13:00 — 21:00</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Kontakt</h4>
+                        <address class="footer-contact">
+                            <a href="https://maps.google.com/?q=ul.+Mściwoja+II+8,+70-535+Szczecin" target="_blank" rel="noopener noreferrer" class="footer-contact-item">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                ul. Mściwoja II 8<br>70-535 Szczecin
+                            </a>
+                            <a href="tel:+48914883481" class="footer-contact-item">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                (91) 488 34 81
+                            </a>
+                            <a href="mailto:info@browarwyszak.pl" class="footer-contact-item">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                info@browarwyszak.pl
+                            </a>
+                        </address>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4 class="footer-heading">Lokalizacja</h4>
+                        <div class="footer-map">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2376.5!2d14.5530!3d53.4285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47aa0940db0c5e4b%3A0x1a0b2c3d4e5f6789!2sBrowar%20Wyszak!5e0!3m2!1spl!2spl!4v1"
+                                width="100%"
+                                height="200"
+                                style="border:0; border-radius:8px;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Lokalizacja Browaru Wyszak na mapie">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Browar Rodzinny Wyszak. Wszelkie prawa zastrzeżone.</p>
+                <p class="footer-note">
+                    <img src="assets/img/brewing-process.png" alt="" width="20" height="20" style="vertical-align:middle;margin-right:4px">
+                    Piwo warzone z pasją w sercu Szczecina
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top" aria-label="Powrót na górę">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
