@@ -1,11 +1,9 @@
 /* ============================================
-   BROWAR WYSZAK — Main JavaScript
+   BROWAR WYSZAK — JavaScript
    ============================================ */
-
 (function () {
     'use strict';
 
-    // --- DOM Ready ---
     document.addEventListener('DOMContentLoaded', init);
 
     function init() {
@@ -13,50 +11,41 @@
         initNavbar();
         initMobileMenu();
         initDarkMode();
-        initCarousel();
-        initLightbox();
+        initHeroSlider();
+        initGalleryLightbox();
+        initTeamCarousel();
         initFadeIn();
         initBackToTop();
         initActiveNavLink();
     }
 
-    // --- Loader ---
+    /* --- Loader --- */
     function hideLoader() {
         var loader = document.getElementById('loader');
         if (!loader) return;
         window.addEventListener('load', function () {
             setTimeout(function () {
                 loader.classList.add('hidden');
-                setTimeout(function () {
-                    loader.style.display = 'none';
-                }, 500);
+                setTimeout(function () { loader.style.display = 'none'; }, 500);
             }, 300);
         });
     }
 
-    // --- Sticky Navbar ---
+    /* --- Sticky Navbar --- */
     function initNavbar() {
         var navbar = document.getElementById('navbar');
         if (!navbar) return;
-
-        var scrollThreshold = 80;
-
-        function handleScroll() {
-            if (window.scrollY > scrollThreshold) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+        function onScroll() {
+            navbar.classList.toggle('scrolled', window.scrollY > 80);
         }
-
-        window.addEventListener('scroll', throttle(handleScroll, 16));
-        handleScroll();
+        window.addEventListener('scroll', throttle(onScroll, 16));
+        onScroll();
     }
 
-    // --- Mobile Menu ---
+    /* --- Mobile Menu --- */
     function initMobileMenu() {
         var toggle = document.getElementById('navToggle');
-        var menu = document.getElementById('navMenu');
+        var menu = document.getElementById('mobileMenu');
         if (!toggle || !menu) return;
 
         toggle.addEventListener('click', function () {
@@ -66,9 +55,7 @@
             document.body.style.overflow = isOpen ? 'hidden' : '';
         });
 
-        // Close on link click
-        var links = menu.querySelectorAll('.nav-link');
-        links.forEach(function (link) {
+        menu.querySelectorAll('.mobile-nav-link').forEach(function (link) {
             link.addEventListener('click', function () {
                 menu.classList.remove('active');
                 toggle.classList.remove('active');
@@ -76,168 +63,95 @@
                 document.body.style.overflow = '';
             });
         });
-
-        // Close on outside click
-        document.addEventListener('click', function (e) {
-            if (menu.classList.contains('active') &&
-                !menu.contains(e.target) &&
-                !toggle.contains(e.target)) {
-                menu.classList.remove('active');
-                toggle.classList.remove('active');
-                toggle.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            }
-        });
     }
 
-    // --- Dark Mode ---
+    /* --- Dark Mode --- */
     function initDarkMode() {
         var btn = document.getElementById('darkModeToggle');
         if (!btn) return;
 
         var stored = localStorage.getItem('browarwyszak-theme');
-        if (stored === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
+        if (stored === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
         }
 
         btn.addEventListener('click', function () {
-            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            if (isDark) {
+            var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+            if (isLight) {
                 document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('browarwyszak-theme', 'light');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('browarwyszak-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('browarwyszak-theme', 'light');
             }
         });
     }
 
-    // --- Carousel ---
-    function initCarousel() {
-        var track = document.getElementById('carouselTrack');
-        var prevBtn = document.getElementById('carouselPrev');
-        var nextBtn = document.getElementById('carouselNext');
-        var dotsContainer = document.getElementById('carouselDots');
+    /* --- Hero Slider --- */
+    function initHeroSlider() {
+        var slides = document.querySelectorAll('.slide');
+        var dots = document.querySelectorAll('.slider-dot');
+        if (!slides.length) return;
 
-        if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
+        var current = 0;
+        var total = slides.length;
+        var interval = null;
 
-        var slides = track.querySelectorAll('.carousel-slide');
-        var slideCount = slides.length;
-        var currentIndex = 0;
-        var autoPlayInterval = null;
-        var touchStartX = 0;
-        var touchEndX = 0;
-
-        // Create dots
-        for (var i = 0; i < slideCount; i++) {
-            var dot = document.createElement('button');
-            dot.classList.add('carousel-dot');
-            dot.setAttribute('aria-label', 'Przejdź do zdjęcia ' + (i + 1));
-            if (i === 0) dot.classList.add('active');
-            dot.dataset.index = i;
-            dotsContainer.appendChild(dot);
+        function goTo(index) {
+            slides[current].classList.remove('active');
+            dots[current].classList.remove('active');
+            current = (index + total) % total;
+            slides[current].classList.add('active');
+            dots[current].classList.add('active');
         }
 
-        var dots = dotsContainer.querySelectorAll('.carousel-dot');
+        function next() { goTo(current + 1); }
 
-        function goToSlide(index) {
-            if (index < 0) index = slideCount - 1;
-            if (index >= slideCount) index = 0;
-            currentIndex = index;
-            track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+        function startAutoplay() {
+            interval = setInterval(next, 9000);
+        }
 
-            dots.forEach(function (dot, i) {
-                dot.classList.toggle('active', i === currentIndex);
+        function resetAutoplay() {
+            clearInterval(interval);
+            startAutoplay();
+        }
+
+        dots.forEach(function (dot) {
+            dot.addEventListener('click', function () {
+                goTo(parseInt(this.dataset.slide, 10));
+                resetAutoplay();
             });
-        }
-
-        prevBtn.addEventListener('click', function () {
-            goToSlide(currentIndex - 1);
-            resetAutoPlay();
         });
 
-        nextBtn.addEventListener('click', function () {
-            goToSlide(currentIndex + 1);
-            resetAutoPlay();
-        });
-
-        dotsContainer.addEventListener('click', function (e) {
-            var dot = e.target.closest('.carousel-dot');
-            if (!dot) return;
-            goToSlide(parseInt(dot.dataset.index, 10));
-            resetAutoPlay();
-        });
-
-        // Touch support
-        track.addEventListener('touchstart', function (e) {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        track.addEventListener('touchend', function (e) {
-            touchEndX = e.changedTouches[0].screenX;
-            var diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) {
-                    goToSlide(currentIndex + 1);
-                } else {
-                    goToSlide(currentIndex - 1);
-                }
-                resetAutoPlay();
-            }
-        }, { passive: true });
-
-        // Keyboard navigation
-        track.closest('.gallery-carousel').addEventListener('keydown', function (e) {
-            if (e.key === 'ArrowLeft') {
-                goToSlide(currentIndex - 1);
-                resetAutoPlay();
-            } else if (e.key === 'ArrowRight') {
-                goToSlide(currentIndex + 1);
-                resetAutoPlay();
-            }
-        });
-
-        // Autoplay
-        function startAutoPlay() {
-            autoPlayInterval = setInterval(function () {
-                goToSlide(currentIndex + 1);
-            }, 5000);
-        }
-
-        function resetAutoPlay() {
-            clearInterval(autoPlayInterval);
-            startAutoPlay();
-        }
-
-        startAutoPlay();
-
-        // Pause on hover
-        var carousel = track.closest('.gallery-carousel');
-        carousel.addEventListener('mouseenter', function () {
-            clearInterval(autoPlayInterval);
-        });
-        carousel.addEventListener('mouseleave', function () {
-            startAutoPlay();
-        });
+        startAutoplay();
     }
 
-    // --- Lightbox ---
-    function initLightbox() {
+    /* --- Gallery Lightbox --- */
+    function initGalleryLightbox() {
+        var items = document.querySelectorAll('.gallery-item');
         var lightbox = document.getElementById('lightbox');
         var lightboxImg = document.getElementById('lightboxImg');
+        var lightboxCaption = document.getElementById('lightboxCaption');
         var closeBtn = document.getElementById('lightboxClose');
         var prevBtn = document.getElementById('lightboxPrev');
         var nextBtn = document.getElementById('lightboxNext');
 
-        if (!lightbox || !lightboxImg) return;
+        if (!items.length || !lightbox) return;
 
-        var slides = document.querySelectorAll('.carousel-slide img');
-        var images = Array.from(slides).map(function (img) { return img.src; });
-        var currentLightboxIndex = 0;
+        var images = [];
+        var captions = [];
+        var currentIdx = 0;
 
-        function openLightbox(index) {
-            currentLightboxIndex = index;
-            lightboxImg.src = images[index];
+        items.forEach(function (item) {
+            var img = item.querySelector('img');
+            images.push(img.src);
+            captions.push(item.dataset.caption || '');
+        });
+
+        function openLightbox(idx) {
+            currentIdx = idx;
+            lightboxImg.src = images[idx];
+            lightboxCaption.textContent = captions[idx];
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -247,97 +161,148 @@
             document.body.style.overflow = '';
         }
 
-        function navigateLightbox(dir) {
-            currentLightboxIndex += dir;
-            if (currentLightboxIndex < 0) currentLightboxIndex = images.length - 1;
-            if (currentLightboxIndex >= images.length) currentLightboxIndex = 0;
-            lightboxImg.src = images[currentLightboxIndex];
+        function navigate(dir) {
+            currentIdx = (currentIdx + dir + images.length) % images.length;
+            lightboxImg.src = images[currentIdx];
+            lightboxCaption.textContent = captions[currentIdx];
         }
 
-        // Click on carousel slide opens lightbox
-        slides.forEach(function (img, index) {
-            img.style.cursor = 'pointer';
-            img.addEventListener('click', function () {
-                openLightbox(index);
-            });
+        items.forEach(function (item, idx) {
+            item.addEventListener('click', function () { openLightbox(idx); });
         });
 
         if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-        if (prevBtn) prevBtn.addEventListener('click', function () { navigateLightbox(-1); });
-        if (nextBtn) nextBtn.addEventListener('click', function () { navigateLightbox(1); });
+        if (prevBtn) prevBtn.addEventListener('click', function () { navigate(-1); });
+        if (nextBtn) nextBtn.addEventListener('click', function () { navigate(1); });
 
-        // Close on overlay click
         lightbox.addEventListener('click', function (e) {
             if (e.target === lightbox) closeLightbox();
         });
 
-        // Keyboard
         document.addEventListener('keydown', function (e) {
             if (!lightbox.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') navigateLightbox(-1);
-            if (e.key === 'ArrowRight') navigateLightbox(1);
+            if (e.key === 'ArrowLeft') navigate(-1);
+            if (e.key === 'ArrowRight') navigate(1);
         });
     }
 
-    // --- Fade In on Scroll ---
+    /* --- Team Carousel --- */
+    function initTeamCarousel() {
+        var track = document.getElementById('teamTrack');
+        var prevBtn = document.getElementById('teamPrev');
+        var nextBtn = document.getElementById('teamNext');
+        if (!track || !prevBtn || !nextBtn) return;
+
+        var cards = track.querySelectorAll('.team-card');
+        var totalCards = cards.length;
+        var offset = 0;
+        var autoInterval = null;
+        var touchStartX = 0;
+
+        function getVisibleCount() {
+            var w = window.innerWidth;
+            if (w <= 480) return 1;
+            if (w <= 1024) return 2;
+            return 4;
+        }
+
+        function getMaxOffset() {
+            return Math.max(0, totalCards - getVisibleCount());
+        }
+
+        function updatePosition() {
+            var cardWidth = 100 / getVisibleCount();
+            track.style.transform = 'translateX(-' + (offset * cardWidth) + '%)';
+        }
+
+        function goNext() {
+            offset = offset >= getMaxOffset() ? 0 : offset + 1;
+            updatePosition();
+        }
+
+        function goPrev() {
+            offset = offset <= 0 ? getMaxOffset() : offset - 1;
+            updatePosition();
+        }
+
+        nextBtn.addEventListener('click', function () { goNext(); resetAuto(); });
+        prevBtn.addEventListener('click', function () { goPrev(); resetAuto(); });
+
+        // Touch support
+        track.addEventListener('touchstart', function (e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', function (e) {
+            var diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) goNext(); else goPrev();
+                resetAuto();
+            }
+        }, { passive: true });
+
+        function startAuto() {
+            autoInterval = setInterval(goNext, 5000);
+        }
+
+        function resetAuto() {
+            clearInterval(autoInterval);
+            startAuto();
+        }
+
+        startAuto();
+
+        var carousel = document.getElementById('teamCarousel');
+        carousel.addEventListener('mouseenter', function () { clearInterval(autoInterval); });
+        carousel.addEventListener('mouseleave', startAuto);
+
+        window.addEventListener('resize', throttle(function () {
+            if (offset > getMaxOffset()) offset = getMaxOffset();
+            updatePosition();
+        }, 200));
+    }
+
+    /* --- Fade In --- */
     function initFadeIn() {
-        var elements = document.querySelectorAll('.fade-in');
-        if (!elements.length) return;
+        var els = document.querySelectorAll('.fade-in');
+        if (!els.length) return;
 
         if ('IntersectionObserver' in window) {
-            var observer = new IntersectionObserver(function (entries) {
+            var obs = new IntersectionObserver(function (entries) {
                 entries.forEach(function (entry) {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
+                        obs.unobserve(entry.target);
                     }
                 });
-            }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            elements.forEach(function (el) {
-                observer.observe(el);
-            });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            els.forEach(function (el) { obs.observe(el); });
         } else {
-            // Fallback: show all
-            elements.forEach(function (el) {
-                el.classList.add('visible');
-            });
+            els.forEach(function (el) { el.classList.add('visible'); });
         }
     }
 
-    // --- Back to Top ---
+    /* --- Back to Top --- */
     function initBackToTop() {
         var btn = document.getElementById('backToTop');
         if (!btn) return;
-
-        function handleScroll() {
-            if (window.scrollY > 500) {
-                btn.classList.add('visible');
-            } else {
-                btn.classList.remove('visible');
-            }
-        }
-
-        window.addEventListener('scroll', throttle(handleScroll, 100));
-
+        window.addEventListener('scroll', throttle(function () {
+            btn.classList.toggle('visible', window.scrollY > 500);
+        }, 100));
         btn.addEventListener('click', function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
-    // --- Active Navigation Link ---
+    /* --- Active Nav Link --- */
     function initActiveNavLink() {
         var sections = document.querySelectorAll('section[id], footer[id]');
         var navLinks = document.querySelectorAll('.nav-link');
-
         if (!sections.length || !navLinks.length) return;
 
         if ('IntersectionObserver' in window) {
-            var observer = new IntersectionObserver(function (entries) {
+            var obs = new IntersectionObserver(function (entries) {
                 entries.forEach(function (entry) {
                     if (entry.isIntersecting) {
                         var id = entry.target.id;
@@ -346,27 +311,17 @@
                         });
                     }
                 });
-            }, {
-                threshold: 0.3,
-                rootMargin: '-80px 0px -50% 0px'
-            });
-
-            sections.forEach(function (section) {
-                observer.observe(section);
-            });
+            }, { threshold: 0.2, rootMargin: '-80px 0px -50% 0px' });
+            sections.forEach(function (s) { obs.observe(s); });
         }
     }
 
-    // --- Utility: Throttle ---
+    /* --- Utility --- */
     function throttle(fn, wait) {
-        var lastTime = 0;
+        var last = 0;
         return function () {
             var now = Date.now();
-            if (now - lastTime >= wait) {
-                lastTime = now;
-                fn.apply(this, arguments);
-            }
+            if (now - last >= wait) { last = now; fn.apply(this, arguments); }
         };
     }
-
 })();
